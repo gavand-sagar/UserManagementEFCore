@@ -17,7 +17,7 @@ namespace UserManagement.Controllers
         public IActionResult Index()
         {
 
-            LuciferContext luciferContext = new LuciferContext();
+            //LuciferContext luciferContext = new LuciferContext();
 
             return View();
         }

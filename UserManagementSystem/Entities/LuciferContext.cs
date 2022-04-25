@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace UserManagement.Entities
+namespace UserManagementSystem.Entities
 {
     public partial class LuciferContext : DbContext
     {
@@ -16,8 +16,7 @@ namespace UserManagement.Entities
         {
         }
 
-        public virtual DbSet<Class> Classes { get; set; } = null!;
-        public virtual DbSet<Student> Students { get; set; } = null!;
+        public virtual DbSet<Person> People { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,19 +30,11 @@ namespace UserManagement.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Class>(entity =>
+            modelBuilder.Entity<Person>(entity =>
             {
+                entity.ToTable("Person");
+
                 entity.Property(e => e.Id).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<Student>(entity =>
-            {
-                entity.Property(e => e.Name).HasMaxLength(50);
-
-                entity.HasOne(d => d.Class)
-                    .WithMany(p => p.Students)
-                    .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK_Students_Classes");
             });
 
             modelBuilder.Entity<User>(entity =>

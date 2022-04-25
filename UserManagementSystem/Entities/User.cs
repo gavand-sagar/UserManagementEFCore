@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UserManagement.Entities
+namespace UserManagementSystem.Entities
 {
     public partial class User
     {
@@ -9,5 +9,6 @@ namespace UserManagement.Entities
         public string? Name { get; set; }
         public string? Age { get; set; }
         public string? City { get; set; }
+
     }
 }
